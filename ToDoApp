@@ -33,12 +33,12 @@ export default function App() {
     }
   };
 
-  const DeleteData = (item) => {
+  const DeleteTask = (item) => {
     const deleteTodo = todoList.filter((data, index) => index != item);
     setTodoList(deleteTodo);
   };
 
-  const ChangeStatus = (item) => {
+  const StatusChange = (item) => {
     const previsousData = {
       description: item?.item?.description,
       title: item?.item?.title,
@@ -48,7 +48,7 @@ export default function App() {
     let newTodoItems = [...doneTask, previsousData];
     setTodoList(newTodoItems);
   };
-  const SearchTitle = (e) => {
+  const SearchByTitle = (e) => {
     console.log(e);
     const searchListValue = todoList.filter((data) => data?.title == e);
     console.log("Search List Value", searchListValue);
@@ -75,7 +75,7 @@ export default function App() {
             <Checkbox
               status={item?.item?.status ? "checked" : "unchecked"}
               onPress={() => {
-                ChangeStatus(item);
+                StatusChange(item);
               }}
             />
           </View>
@@ -83,7 +83,7 @@ export default function App() {
             <Text>{item?.item?.title}</Text>
             <Text>{item?.item?.description}</Text>
           </View>
-          <TouchableOpacity onPress={() => DeleteData(item?.index)}>
+          <TouchableOpacity onPress={() => DeleteTask(item?.index)}>
             <AntDesign name="delete" size={24} color="black" />
           </TouchableOpacity>
         </View>
@@ -160,7 +160,7 @@ export default function App() {
         >
           <TextInput
             placeholder="Search By Title"
-            onChangeText={(e) => SearchTitle(e)}
+            onChangeText={(e) => SearchByTitle(e)}
           />
         </View>
           <FlatList
